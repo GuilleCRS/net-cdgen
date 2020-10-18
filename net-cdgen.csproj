@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>net_cdgen</RootNamespace>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>netcdgen</ToolCommandName>
+        <PackageId>netcdgen</PackageId>
+        <PackageOutputPath>.nuget</PackageOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="ModelHandler" />
+      <Folder Include="ServiceHandler" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Docs\Help.txt" />
+      <Content Include="Docs\Help.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="ControllerHandler\Templates\ControllerBaseTemplate.txt" />
+      <Content Include="ControllerHandler\Templates\ControllerBaseTemplate.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>

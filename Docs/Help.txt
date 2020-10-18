@@ -1,0 +1,11 @@
+﻿Hi welcome to dotnet code generator.
+
+dngen controller
+        [-m || --model] ModelName
+        [-nm || --namespace] DirectoryNamespace
+        [[type?]]
+dngen model 
+        [-h || --help]
+        [-a || --attributes] [type:name,...] @OPTIONAL:[-gts || --genToStr]
+dngen service
+dngen type [-h || --help] => This will display more help about the command

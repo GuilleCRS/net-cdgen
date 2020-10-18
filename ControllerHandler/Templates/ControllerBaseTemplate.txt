@@ -1,0 +1,39 @@
+﻿//using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using @NAMESPACE.Models;
+
+namespace @NAMESPACE.Controllers
+{
+    //[Authorize]
+    [ApiController]
+    [Route("[controller]")]
+    public class @CONTROLLER : ControllerBase
+    {
+        [HttpGet]
+        public ActionResult<@MODEL> GetAll()
+        {
+            return Ok();
+        }
+        [HttpGet("{id}")]
+        public ActionResult<@MODEL> Get(string id)
+        {
+            return Ok();
+        }
+        //[AllowAnonymous]
+        [HttpPost("{id}")]
+        public ActionResult<@MODEL> Create([FromBody] @MODEL @MTL)
+        {
+            return Ok();
+        }
+        [HttpPut("{id}")]
+        public ActionResult<@MODEL> Update(int id,[FromBody] @MODEL @MTL)
+        {
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public ActionResult<@MODEL> Update(int id)
+        {
+            return Ok();
+        }
+    }
+}
