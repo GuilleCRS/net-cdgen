@@ -1,0 +1,7 @@
+﻿namespace @NAMESPACE.Models
+{
+    public class @MODEL
+    {
+@PARAMS
+    }
+}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using static net_cdgen.Resources.HelpMethods_;
 
 namespace net_cdgen.ControllerHandler
 {
@@ -111,17 +112,6 @@ namespace net_cdgen.ControllerHandler
             }
         }
 
-        public void PrintError(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        public void PrintMessage(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
+
     }
 }

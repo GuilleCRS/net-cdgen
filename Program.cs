@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using net_cdgen.ControllerHandler;
+using net_cdgen.ModelHandler;
 using net_dcdgen;
 
 namespace net_cdgen
@@ -19,6 +20,7 @@ namespace net_cdgen
                         new CreateController(args);
                         break;
                     case "model":
+                        new CreateModel(args);
                         break;
                     case "service":
                         break;
@@ -30,5 +32,18 @@ namespace net_cdgen
                 new DocPrinter(mainHelp);
             }
         }
+        public void PrintError(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        public void PrintMessage(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
+    
 }
