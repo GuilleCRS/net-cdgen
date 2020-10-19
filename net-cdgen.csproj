@@ -8,6 +8,20 @@
         <ToolCommandName>netcdgen</ToolCommandName>
         <PackageId>netcdgen</PackageId>
         <PackageOutputPath>.nuget</PackageOutputPath>
+        <id>net-cdgen</id>
+        <version>1.0.2</version>
+        <title>Net Code Generator</title>
+        <authors>GuilleCRS</authors>
+        <owners>Guillermo Cruz</owners>
+        <RepositoryType>GIT</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/GuilleCRS/net-cdgen</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/GuilleCRS/net-cdgen</PackageProjectUrl>
+        <description>This is my own code generator</description>
+        <PackageReleaseNotes>Initial 1.0.0 release.</PackageReleaseNotes>
+        <copyright>Copyright 2020 GuilleCRS</copyright>
+        <PackageTags>sample codegen</PackageTags>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +36,17 @@
       </Content>
       <None Remove="ControllerHandler\Templates\ControllerBaseTemplate.txt" />
       <Content Include="ControllerHandler\Templates\ControllerBaseTemplate.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="LICENSE">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="README.md" />
+      <Content Include="README.md">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="LICENSE.txt" />
+      <Content Include="LICENSE.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

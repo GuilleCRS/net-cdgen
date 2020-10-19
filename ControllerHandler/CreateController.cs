@@ -46,7 +46,7 @@ namespace net_cdgen.ControllerHandler
                             fs.Close();
                             var currDir = Directory.GetCurrentDirectory();
                             FileInfo f = new FileInfo("BaseControllerTemplate.txt");
-                            var templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,@"ControllerHandler\Templates\ControllerBaseTemplate.txt");
+                            var templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,@"ControllerHandler/Templates/ControllerBaseTemplate.txt");
                             Console.WriteLine(templatePath);
                             string text = File.ReadAllText(templatePath);
                             text = text.Replace("@NAMESPACE", $"{nmspace}");

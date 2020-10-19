@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>net-cdgen</id>
+    <version>1.0.2</version>
+    <title>Net Code Generator</title>
+    <authors>GuilleCRS</authors>
+    <owners>Guillermo Cruz</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <language>C#</language>
+    <projectUrl>https://github.com/GuilleCRS/net-cdgen/</projectUrl>
+    <description>This is my own code generator</description>
+    <releaseNotes>Initial 1.0.0 release.</releaseNotes>
+    <copyright>Copyright 2020 GuilleCRS</copyright>
+    <tags>sample codegen</tags>
+  </metadata>
+</package>
