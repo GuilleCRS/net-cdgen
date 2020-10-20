@@ -1,4 +1,5 @@
-﻿namespace @NAMESPACE.Models
+﻿
+namespace @NAMESPACE.Models
 {
     public class @MODEL
     {

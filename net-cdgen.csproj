@@ -9,7 +9,7 @@
         <PackageId>netcdgen</PackageId>
         <PackageOutputPath>.nuget</PackageOutputPath>
         <id>net-cdgen</id>
-        <version>1.0.2</version>
+        <version>1.0.7</version>
         <title>Net Code Generator</title>
         <authors>GuilleCRS</authors>
         <owners>Guillermo Cruz</owners>
@@ -17,16 +17,12 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/GuilleCRS/net-cdgen</RepositoryUrl>
         <PackageProjectUrl>https://github.com/GuilleCRS/net-cdgen</PackageProjectUrl>
-        <description>This is my own code generator</description>
-        <PackageReleaseNotes>Initial 1.0.0 release.</PackageReleaseNotes>
+        <description>This is my own code generator working at version 3.1.401</description>
+        <PackageReleaseNotes>1.0.7 => Service creation.</PackageReleaseNotes>
         <copyright>Copyright 2020 GuilleCRS</copyright>
         <PackageTags>sample codegen</PackageTags>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="ServiceHandler" />
-    </ItemGroup>
 
     <ItemGroup>
       <None Remove="Docs\Help.txt" />
@@ -52,6 +48,10 @@
       <None Remove="obj\**" />
       <None Remove="ModelHandler\Templates\SimpleModelTemplate.txt" />
       <Content Include="ModelHandler\Templates\SimpleModelTemplate.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="ServiceHandler\Templates\MongoServiceTemplate.txt" />
+      <Content Include="ServiceHandler\Templates\MongoServiceTemplate.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

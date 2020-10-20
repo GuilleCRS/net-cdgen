@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using @NAMESPACE.Models;
+
+namespace @NAMESPACE.Services
+{
+    public interface I@MODELService
+    {
+        public List<@MODEL> GetAll();
+        public @MODEL Get(string id);
+        public @MODEL Create(@MODEL new@MODEL);
+        public void Update(string id, @MODEL updated@MODEL);
+        public void Delete(string id);
+    }
+    public class @MODELService : I@MODELService
+    {
+        private readonly IMongoCollection<@MODEL> _m@MODELs;
+        private readonly string _secretCredentials;
+        public @MODELService()
+        {
+            var mongoClient = new MongoClient("Your connection URL");
+            var dB = mongoClient.GetDatabase("Your database name");
+            _m@MODELs = dB.GetCollection<@MODEL>("Your collection name");
+            _secretCredentials = "Your secret credentials";
+
+        }
+        public List<@MODEL> GetAll() => _m@MODELs.Find(@MODELTL => true).ToList();
+        
+        public @MODEL Get(string id)
+        {
+            return _m@MODELs.Find(@MODELTL => @MODELTL.Id == id).FirstOrDefault();
+        }
+
+        public @MODEL Create(@MODEL new@MODEL)
+        {
+            return null;
+        }
+
+        public void Update(string id, User updated@MODEL)
+        {
+        }
+        public void Delete(string id)
+        {
+       
+        }
+    }
+}

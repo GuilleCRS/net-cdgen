@@ -145,7 +145,7 @@ namespace net_cdgen.ModelHandler
                 if (match1 && match2)
                 {
                     types.Add(t_n[0]);
-                    names.Add(t_n[1]);
+                    names.Add(char.ToUpper(t_n[1][0])+t_n[1].Substring(1));
                 }
                 else
                 {

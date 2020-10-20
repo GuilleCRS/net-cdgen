@@ -1,4 +1,5 @@
-﻿//using Microsoft.AspNetCore.Authorization;
+﻿
+//using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using @NAMESPACE.Models;
 
@@ -9,8 +10,9 @@ namespace @NAMESPACE.Controllers
     [Route("[controller]")]
     public class @CONTROLLER : ControllerBase
     {
+        public @CONTROLLER (){}
         [HttpGet]
-        public ActionResult<@MODEL> GetAll()
+        public List<@MODEL> GetAll()
         {
             return Ok();
         }
@@ -26,12 +28,12 @@ namespace @NAMESPACE.Controllers
             return Ok();
         }
         [HttpPut("{id}")]
-        public ActionResult<@MODEL> Update(int id,[FromBody] @MODEL @MTL)
+        public ActionResult<@MODEL> Update(string id,[FromBody] @MODEL @MTL)
         {
             return Ok();
         }
         [HttpDelete("{id}")]
-        public ActionResult<@MODEL> Update(int id)
+        public ActionResult<@MODEL> Delete(string id)
         {
             return Ok();
         }
