@@ -7,7 +7,7 @@ namespace net_cdgen.ControllerHandler
 {
     public class CreateController
     {
-        private string[] args;
+        private readonly string[] args;
 
         public CreateController(string[] args)
         {
@@ -17,13 +17,9 @@ namespace net_cdgen.ControllerHandler
                 if (args[1] == "-m" || args[1] == "--model")
                 {
                     if (args[3] == "-nm" || args[3] == "--namespace")
-                    {
                         Start();
-                    }
                     else
-                    {
                         PrintError($"Error: Unexpected {args[3]} argument, expecting [-nm | --namespace].");
-                    }
                 }
                 else
                 {
@@ -38,13 +34,13 @@ namespace net_cdgen.ControllerHandler
 
         private void Start()
         {
-            string model = args[2];
-            string nmspace = args[4];
-            string controllerName = model + "Controller.cs";
-            string directoryName = @"Controllers";
-            bool directoryExists = Directory.Exists(directoryName);
-            bool modelExists = File.Exists(@"Models/" + model+".cs");
-            bool fileExists = File.Exists(@"Controllers/" + controllerName);
+            var model = args[2];
+            var nmspace = args[4];
+            var controllerName = model + "Controller.cs";
+            var directoryName = @"Controllers";
+            var directoryExists = Directory.Exists(directoryName);
+            var modelExists = File.Exists(@"Models/" + model + ".cs");
+            var fileExists = File.Exists(@"Controllers/" + controllerName);
 
             try
             {
@@ -54,7 +50,7 @@ namespace net_cdgen.ControllerHandler
                 }
                 else
                 {
-                    DirectoryInfo di = Directory.CreateDirectory(directoryName);
+                    var di = Directory.CreateDirectory(directoryName);
                     PrintMessage(
                         $"The directory {directoryName} was created successfully at {Directory.GetCreationTime(directoryName)}.");
                 }
@@ -67,8 +63,8 @@ namespace net_cdgen.ControllerHandler
 
             try
             {
-                string controllerPath = Path.Combine(directoryName, controllerName);
-                
+                var controllerPath = Path.Combine(directoryName, controllerName);
+
                 if (fileExists)
                 {
                     PrintMessage($"Controller {model}Controller.cs was found, would you like to ovwerwrite it? Y/N");
@@ -79,6 +75,7 @@ namespace net_cdgen.ControllerHandler
                         return;
                     }
                 }
+
                 if (!modelExists)
                 {
                     PrintMessage($"Model {model} was not found, would you like to proceed? Y/N");
@@ -88,22 +85,21 @@ namespace net_cdgen.ControllerHandler
                         PrintMessage("Aborting controller creation.");
                         return;
                     }
-
                 }
 
 
-                FileStream fs = File.Create(controllerPath);
+                var fs = File.Create(controllerPath);
                 fs.Close();
-                FileInfo f = new FileInfo("BaseControllerTemplate.txt");
+                var f = new FileInfo("BaseControllerTemplate.txt");
                 var templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                     @"ControllerHandler/Templates/ControllerBaseTemplate.txt");
-                string text = File.ReadAllText(templatePath);
+                var text = File.ReadAllText(templatePath);
                 text = text.Replace("@NAMESPACE", $"{nmspace}");
                 text = text.Replace("@MODEL", model);
                 text = text.Replace("@CONTROLLER", $"{model}Controller");
                 text = text.Replace("@MTL", $"{model.ToLower()}");
                 File.WriteAllText(controllerPath, text);
-                PrintMessage($"Controller: {model}Controller.cs creation completed!"  );
+                PrintMessage($"Controller: {model}Controller.cs creation completed!");
             }
             catch (Exception e)
             {
@@ -111,7 +107,5 @@ namespace net_cdgen.ControllerHandler
                 throw;
             }
         }
-
-
     }
 }

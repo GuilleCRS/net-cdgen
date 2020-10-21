@@ -8,9 +8,9 @@ using net_dcdgen;
 
 namespace net_cdgen
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var mainPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (args.Length > 1)
@@ -30,22 +30,10 @@ namespace net_cdgen
             }
             else
             {
-                var mainHelp = Path.Combine(mainPath,@"Docs/Help.txt") ;
+                var mainHelp = Path.Combine(mainPath, @"Docs/Help.txt");
                 new DocPrinter(mainHelp);
             }
         }
-        public void PrintError(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        public void PrintMessage(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
+        
     }
-    
 }

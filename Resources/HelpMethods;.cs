@@ -10,6 +10,7 @@ namespace net_cdgen.Resources
             Console.WriteLine(text);
             Console.ForegroundColor = ConsoleColor.White;
         }
+
         public static void PrintMessage(string text)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

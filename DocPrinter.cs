@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.IO;
 
 namespace net_dcdgen
@@ -9,7 +9,6 @@ namespace net_dcdgen
         {
             var lines = File.ReadLines(path);
             foreach (var line in lines)
-            {
                 if (line.Contains("dngen"))
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -20,7 +19,6 @@ namespace net_dcdgen
                 {
                     Console.WriteLine(line);
                 }
-            }
         }
     }
 }

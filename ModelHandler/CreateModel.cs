@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Mime;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static net_cdgen.Resources.HelpMethods_;
@@ -11,7 +9,7 @@ namespace net_cdgen.ModelHandler
 {
     public class CreateModel
     {
-          private string[] args;
+        private readonly string[] args;
 
         public CreateModel(string[] args)
         {
@@ -23,14 +21,9 @@ namespace net_cdgen.ModelHandler
                     if (args[3] == "-nm" || args[3] == "--namespace")
                     {
                         if (args[5] == "-a" || args[3] == "--attributes")
-                        {
-                        
                             Start();
-                        }
                         else
-                        {
                             PrintError($"Error: Unexpected {args[5]} argument, expecting [-a | --attributes].");
-                        }
                     }
                     else
                     {
@@ -50,12 +43,12 @@ namespace net_cdgen.ModelHandler
 
         private void Start()
         {
-            string model = args[2];
-            string nmspace = args[4];
-            string modelName = model + ".cs";
-            string directoryName = @"Models";
-            bool directoryExists = Directory.Exists(directoryName);
-            bool modelExists = File.Exists(@"Models/" + modelName);
+            var model = args[2];
+            var nmspace = args[4];
+            var modelName = model + ".cs";
+            var directoryName = @"Models";
+            var directoryExists = Directory.Exists(directoryName);
+            var modelExists = File.Exists(@"Models/" + modelName);
 
             try
             {
@@ -65,7 +58,7 @@ namespace net_cdgen.ModelHandler
                 }
                 else
                 {
-                    DirectoryInfo di = Directory.CreateDirectory(directoryName);
+                    var di = Directory.CreateDirectory(directoryName);
                     PrintMessage(
                         $"The directory {directoryName} was created successfully at {Directory.GetCreationTime(directoryName)}.");
                 }
@@ -78,8 +71,8 @@ namespace net_cdgen.ModelHandler
 
             try
             {
-                string modelPath = Path.Combine(directoryName, modelName);
-                
+                var modelPath = Path.Combine(directoryName, modelName);
+
                 if (modelExists)
                 {
                     PrintMessage($"Model {model}.cs was found, would you like to ovwerwrite it? Y/N");
@@ -92,17 +85,17 @@ namespace net_cdgen.ModelHandler
                 }
 
 
-                FileStream fs = File.Create(modelPath);
+                var fs = File.Create(modelPath);
                 fs.Close();
                 Console.WriteLine("eh");
                 var templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                     @"ModelHandler/Templates/SimpleModelTemplate.txt");
-                string text = File.ReadAllText(templatePath);
+                var text = File.ReadAllText(templatePath);
                 text = text.Replace("@NAMESPACE", $"{nmspace}");
                 text = text.Replace("@MODEL", model);
                 text = text.Replace("@PARAMS", GenerateParams(args));
                 File.WriteAllText(modelPath, text);
-                PrintMessage($"Model: {model}.cs creation completed!"  );
+                PrintMessage($"Model: {model}.cs creation completed!");
             }
             catch (Exception e)
             {
@@ -110,17 +103,15 @@ namespace net_cdgen.ModelHandler
                 throw;
             }
         }
-        
+
         private string GenerateParams(string[] args)
         {
-            string _params="";
-            string argument = "";
-            for (int i = 6; i < args.Length; i++)
-            {
-                argument += args[i];
-            }
+            var _params = "";
+            var argument = "";
+            for (var i = 6; i < args.Length; i++) argument += args[i];
 
-            argument = argument.Substring(argument.IndexOf("[", StringComparison.Ordinal), argument.IndexOf("]", StringComparison.Ordinal));
+            argument = argument.Substring(argument.IndexOf("[", StringComparison.Ordinal),
+                argument.IndexOf("]", StringComparison.Ordinal));
             argument = argument.Replace("[", "");
             argument = argument.Replace("]", "");
             if (!argument.Contains(":"))
@@ -130,7 +121,8 @@ namespace net_cdgen.ModelHandler
             }
 
             var parameters = argument.Split(',');
-            List<string> types = new List<string>();List<string> names = new List<string>();
+            var types = new List<string>();
+            var names = new List<string>();
             foreach (var str in parameters)
             {
                 var t_n = str.Split(':');
@@ -145,22 +137,19 @@ namespace net_cdgen.ModelHandler
                 if (match1 && match2)
                 {
                     types.Add(t_n[0]);
-                    names.Add(char.ToUpper(t_n[1][0])+t_n[1].Substring(1));
+                    names.Add(char.ToUpper(t_n[1][0]) + t_n[1].Substring(1));
                 }
                 else
                 {
                     PrintError("Unknown type/name format! Only A-Z, a-z, _ accepted\n" +
-                               "Error=> "+((match1) ? "" : $"Type: {t_n[0]}"+"  ") + ((match2) ? " " : $"Name: {t_n[1]}"));
+                               "Error=> " + (match1 ? "" : $"Type: {t_n[0]}" + "  ") +
+                               (match2 ? " " : $"Name: {t_n[1]}"));
                     Environment.Exit(-1);
                 }
+            }
 
-            }
-            for (int i = 0; i < types.Count; i++)
-            {
-                _params += $"\t\tpublic {types[i]} {names[i]}" + " { get; set; }\n";
-            }
+            for (var i = 0; i < types.Count; i++) _params += $"\t\tpublic {types[i]} {names[i]}" + " { get; set; }\n";
             return _params;
         }
-
     }
 }

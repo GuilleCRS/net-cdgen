@@ -2,11 +2,12 @@
 using System.IO;
 using System.Reflection;
 using static net_cdgen.Resources.HelpMethods_;
+
 namespace net_cdgen.ServiceHandler
 {
     public class CreateService
     {
-            private string[] args;
+        private readonly string[] args;
 
         public CreateService(string[] args)
         {
@@ -18,14 +19,9 @@ namespace net_cdgen.ServiceHandler
                     if (args[3] == "-nm" || args[3] == "--namespace")
                     {
                         if (args[5] == "--mongo" || args[5] == "--sql")
-                        {
                             Start(args[5]);
-                        }
                         else
-                        {
                             PrintError($"Error: Unexpected {args[5]} argument, expecting [--mongo | --sql].");
-                        }
-
                     }
                     else
                     {
@@ -45,13 +41,13 @@ namespace net_cdgen.ServiceHandler
 
         private void Start(string type)
         {
-            string model = args[2];
-            string nmspace = args[4];
-            string serviceName = model + "Service.cs";
-            string directoryName = @"Services";
-            bool directoryExists = Directory.Exists(directoryName);
-            bool modelExists = File.Exists(@"Models/" + model+".cs");
-            bool fileExists = File.Exists(@"Services/" + serviceName);
+            var model = args[2];
+            var nmspace = args[4];
+            var serviceName = model + "Service.cs";
+            var directoryName = @"Services";
+            var directoryExists = Directory.Exists(directoryName);
+            var modelExists = File.Exists(@"Models/" + model + ".cs");
+            var fileExists = File.Exists(@"Services/" + serviceName);
 
             try
             {
@@ -61,7 +57,7 @@ namespace net_cdgen.ServiceHandler
                 }
                 else
                 {
-                    DirectoryInfo di = Directory.CreateDirectory(directoryName);
+                    var di = Directory.CreateDirectory(directoryName);
                     PrintMessage(
                         $"The directory {directoryName} was created successfully at {Directory.GetCreationTime(directoryName)}.");
                 }
@@ -74,8 +70,8 @@ namespace net_cdgen.ServiceHandler
 
             try
             {
-                string controllerPath = Path.Combine(directoryName, serviceName);
-                
+                var controllerPath = Path.Combine(directoryName, serviceName);
+
                 if (fileExists)
                 {
                     PrintMessage($"Service {model}Service.cs was found, would you like to ovwerwrite it? Y/N");
@@ -86,6 +82,7 @@ namespace net_cdgen.ServiceHandler
                         return;
                     }
                 }
+
                 if (!modelExists)
                 {
                     PrintMessage($"Model {model} was not found, would you like to proceed? Y/N");
@@ -95,29 +92,25 @@ namespace net_cdgen.ServiceHandler
                         PrintMessage("Aborting service creation.");
                         return;
                     }
-
                 }
 
 
-                FileStream fs = File.Create(controllerPath);
+                var fs = File.Create(controllerPath);
                 fs.Close();
                 var templatePath = "";
                 if (type == "--mongo")
-                {
-                   templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
+                    templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                         @"ServiceHandler/Templates/MongoServiceTemplate.txt");
-                }else if (type == "--sql")
-                {
+                else if (type == "--sql")
                     templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                         @"ServiceHandler/Templates/SqlServiceTemplate.txt");
-                }
-                string text = File.ReadAllText(templatePath);
+                var text = File.ReadAllText(templatePath);
                 text = text.Replace("@NAMESPACE", $"{nmspace}");
                 text = text.Replace("@MODEL", model);
                 //text = text.Replace("@CONTROLLER", $"{model}Controller");
                 text = text.Replace("@MTL", $"{model.ToLower()}");
                 File.WriteAllText(controllerPath, text);
-                PrintMessage($"Service: {model}Service.cs creation completed!"  );
+                PrintMessage($"Service: {model}Service.cs creation completed!");
             }
             catch (Exception e)
             {
@@ -125,7 +118,5 @@ namespace net_cdgen.ServiceHandler
                 throw;
             }
         }
-
-
     }
 }
