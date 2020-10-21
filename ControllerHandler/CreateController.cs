@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using net_dcdgen;
 using static net_cdgen.Resources.HelpMethods_;
 
 namespace net_cdgen.ControllerHandler
@@ -12,7 +13,11 @@ namespace net_cdgen.ControllerHandler
         public CreateController(string[] args)
         {
             this.args = args;
-            if (args.Length == 5)
+            if(args.Length==1)
+            {
+                new DocPrinter( @"Docs/Controller.txt");
+            }
+            else if (args.Length == 5)
             {
                 if (args[1] == "-m" || args[1] == "--model")
                 {
@@ -28,7 +33,8 @@ namespace net_cdgen.ControllerHandler
             }
             else
             {
-                PrintError("Error: 5 Arguments expected received " + this.args.Length);
+                new DocPrinter( @"Docs/Controller.txt");
+                PrintError("\nError: 5 Arguments expected received " + this.args.Length);
             }
         }
 

@@ -1,0 +1,6 @@
+﻿Options: 
+
+  -m  | --model ModelName               You must specify your model name ex: User.
+  -nm | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
+  -a  | --attributes [type:name,...]    You must specify your model attributes in an array where type = [int,string,bool,...] and name = yourpropertyname.
+  -gts | --genToStr => [OPTIONAL]       NotImplemented: If you want to generate a toStringMethod

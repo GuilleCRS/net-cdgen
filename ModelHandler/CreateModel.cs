@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using net_dcdgen;
 using static net_cdgen.Resources.HelpMethods_;
 
 namespace net_cdgen.ModelHandler
@@ -14,7 +15,11 @@ namespace net_cdgen.ModelHandler
         public CreateModel(string[] args)
         {
             this.args = args;
-            if (args.Length >= 7)
+            if(args.Length==1)
+            {
+                new DocPrinter( @"Docs/Model.txt");
+            }
+            else if (args.Length >= 7)
             {
                 if (args[1] == "-m" || args[1] == "--model")
                 {
@@ -37,7 +42,8 @@ namespace net_cdgen.ModelHandler
             }
             else
             {
-                PrintError("Error: Expected at least 7 arguments, received " + this.args.Length);
+                new DocPrinter( @"Docs/Model.txt");
+                PrintError("\nError: Expected at least 7 arguments, received " + this.args.Length);
             }
         }
 

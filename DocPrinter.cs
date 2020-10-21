@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace net_dcdgen
 {
@@ -7,6 +8,8 @@ namespace net_dcdgen
     {
         public DocPrinter(string path)
         {
+            var mainPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            path = Path.Combine(mainPath, path);
             var lines = File.ReadLines(path);
             foreach (var line in lines)
                 if (line.Contains("dngen"))

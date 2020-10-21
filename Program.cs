@@ -12,8 +12,8 @@ namespace net_cdgen
     {
         private static void Main(string[] args)
         {
-            var mainPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            if (args.Length > 1)
+            
+            if (args.Length > 0)
             {
                 switch (args[0])
                 {
@@ -30,8 +30,7 @@ namespace net_cdgen
             }
             else
             {
-                var mainHelp = Path.Combine(mainPath, @"Docs/Help.txt");
-                new DocPrinter(mainHelp);
+                new DocPrinter( @"Docs/Commands.txt");
             }
         }
         

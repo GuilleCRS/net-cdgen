@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using net_dcdgen;
 using static net_cdgen.Resources.HelpMethods_;
 
 namespace net_cdgen.ServiceHandler
@@ -12,13 +13,17 @@ namespace net_cdgen.ServiceHandler
         public CreateService(string[] args)
         {
             this.args = args;
-            if (args.Length == 6)
+            if(args.Length==1)
+            {
+                new DocPrinter( @"Docs/Service.txt");
+            }
+            else if (args.Length == 6)
             {
                 if (args[1] == "-m" || args[1] == "--model")
                 {
                     if (args[3] == "-nm" || args[3] == "--namespace")
                     {
-                        if (args[5] == "--mongo" || args[5] == "--sql")
+                        if (args[5] == "-mongo" || args[5] == "-sql")
                             Start(args[5]);
                         else
                             PrintError($"Error: Unexpected {args[5]} argument, expecting [--mongo | --sql].");
@@ -35,7 +40,8 @@ namespace net_cdgen.ServiceHandler
             }
             else
             {
-                PrintError("Error: 5 Arguments expected received " + this.args.Length);
+                new DocPrinter( @"Docs/Service.txt");
+                PrintError("\nError: 5 Arguments expected received " + this.args.Length);
             }
         }
 

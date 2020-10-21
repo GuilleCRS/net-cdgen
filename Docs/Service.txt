@@ -1,0 +1,5 @@
+﻿Options: 
+
+  -m  | --model     ModelName           You must specify your model name ex: User.
+  -nm | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
+  -mongo | -sql                         OnlyMongoImplemented: You must specify type of service.

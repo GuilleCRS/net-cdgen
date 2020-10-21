@@ -1,14 +1,15 @@
 ﻿Hi welcome to dotnet code generator.
 
-dngen controller
+Options:
+netcdgen controller
         [-m || --model] ModelName
         [-nm || --namespace] DirectoryNamespace
         [[type?]]
-dngen model 
+netcdgen model 
         [-h || --help]
         [-m || --model] ModelName
         [-nm || --namespace] DirectoryNamespace
         [-a || --attributes] [type:name,...] 
         @OPTIONAL:[-gts || --genToStr]
-dngen service
-dngen type [-h || --help] => This will display more help about the command
+netcdgen service
+netcdgen type [-h || --help] => This will display more help about the command

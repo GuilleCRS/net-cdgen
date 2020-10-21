@@ -1,0 +1,6 @@
+﻿Hi welcome to dotnet code generator.
+
+Commands:
+  model       Tool for model creation.
+  controller  Tool for controller creation.
+  service     Tool for service creation.
