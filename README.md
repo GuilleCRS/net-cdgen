@@ -7,7 +7,7 @@ This is my code generator working with C# webapis
 
 ### Installation
 
-This tool generate code based on [.NET Core](https://nodejs.org/) v3+ .
+This tool generates code based on [.NET Core 3](https://dotnet.microsoft.com/).
 
 ```sh
 $ dotnet tool install --global netcdgen --version 1.1.0
@@ -21,19 +21,19 @@ commands:
 
 netcdgen controller
     Options:
-         -m  | --model ModelName               You must specify your model name ex: User.
-         -nm | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
+         -m    | --model ModelName               You must specify your model name ex: User.
+         -nm   | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
 netcdgen model 
     Options: 
-        -m  | --model ModelName               You must specify your model name ex: User.
-        -nm | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
-        -a  | --attributes [type:name,...]    You must specify your model attributes in an array where type = [int,string,bool,...] and name = yourpropertyname.
-        -gts | --genToStr => [OPTIONAL]       NotImplemented: If you want to generate a toStringMethod
+        -m     | --model ModelName               You must specify your model name ex: User.
+        -nm    | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
+        -a     | --attributes [type:name,...]    You must specify your model attributes in an array where type = [int,string,bool,...] and name = yourpropertyname.
+        -gts   | --genToStr => [OPTIONAL]        NotImplemented: If you want to generate a toStringMethod
 netcdgen service
     Options: 
-        -m  | --model     ModelName           You must specify your model name ex: User.
-        -nm | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
-  -mongo | -sql                         OnlyMongoImplemented: You must specify type of service.
+        -m     | --model     ModelName           You must specify your model name ex: User.
+        -nm    | --namespace DirectoryNamespace  You must specify your projects namespace ex: myWebApi.
+        -mongo | -sql                            OnlyMongoImplemented: You must specify type of service.
   
 ```
 
